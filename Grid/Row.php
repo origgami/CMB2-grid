@@ -3,10 +3,12 @@
 namespace Cmb2Grid\Grid;
 
 /**
- * Description of Cmb2GridColumn
+ * Description of Cmb2GridRow
  *
  * @author Pablo Pacheco <pablo.pacheco@origgami.com.br>
  */
-class Cmb2GridColumn {
-	//put your code here
+class Row {
+	public function addColumn($fieldId) {
+		
+	}
 }

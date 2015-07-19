@@ -7,7 +7,7 @@ namespace Cmb2Grid;
   Plugin URI: https://github.com/origgami/CMB2-grid
   Description: A grid system for Wordpress CMB2 library that allows columns creation
   Version: 1.0.0
-  Author: Pablo Pacheco <pablo.pacheco@origgami.com.br>
+  Author: Origgami
   Author URI: http://origgami.com.br
   License: GPLv2
  */
@@ -22,15 +22,15 @@ class Cmb2GridPlugin {
 	}
 	
 	private function test(){
-		$cmb2Grid = new Grid\Cmb2Grid();
-		$row = $cmb2Grid->addRow();
+		require dirname(__FILE__).'/Test/Test.php';
+		new Test\Test();
 	}
 	
 	private function loadFiles(){
 		if(is_admin()){
 			require dirname(__FILE__).'/Grid/Cmb2Grid.php';
-			require dirname(__FILE__).'/Grid/Cmb2GridColumn.php';
-			require dirname(__FILE__).'/Grid/Cmb2GridRow.php';
+			require dirname(__FILE__).'/Grid/Column.php';
+			require dirname(__FILE__).'/Grid/Row.php';
 		}
 	}
 	
