@@ -23,7 +23,7 @@ class Test {
 		/**
 		 * Sample metabox to demonstrate each field type included
 		 */
-		$cmb_demo = new_cmb2_box(array(
+		$cmb = new_cmb2_box(array(
 			'id'			 => $prefix . 'metabox',
 			'title'			 => __('Test Metabox', 'cmb2'),
 			'object_types'	 => array('page',), // Post type
@@ -34,7 +34,7 @@ class Test {
 		// 'cmb_styles' => false, // false to disable the CMB stylesheet
 		// 'closed'     => true, // true to keep the metabox closed by default
 		));
-		$cmb_demo->add_field(array(
+		$field1 = $cmb->add_field(array(
 			'name'		 => __('Test Text', 'cmb2'),
 			'desc'		 => __('field description (optional)', 'cmb2'),
 			'id'		 => $prefix . 'text',
@@ -45,21 +45,21 @@ class Test {
 		// 'on_front'        => false, // Optionally designate a field to wp-admin only
 		// 'repeatable'      => true,
 		));
-		$cmb_demo->add_field(array(
+		$field2 = $cmb->add_field(array(
 			'name'	 => __('Test Text Small', 'cmb2'),
 			'desc'	 => __('field description (optional)', 'cmb2'),
 			'id'	 => $prefix . 'textsmall',
 			'type'	 => 'text',
 		// 'repeatable' => true,
 		));
-		$cmb_demo->add_field(array(
+		$field3 = $cmb->add_field(array(
 			'name'	 => __('Test Text Medium', 'cmb2'),
 			'desc'	 => __('field description (optional)', 'cmb2'),
 			'id'	 => $prefix . 'textmedium',
 			'type'	 => 'text',
 		// 'repeatable' => true,
 		));
-		$cmb_demo->add_field(array(
+		$field4 = $cmb->add_field(array(
 			'name'	 => __('Website URL', 'cmb2'),
 			'desc'	 => __('field description (optional)', 'cmb2'),
 			'id'	 => $prefix . 'url',
@@ -67,7 +67,7 @@ class Test {
 		// 'protocols' => array('http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet'), // Array of allowed protocols
 		// 'repeatable' => true,
 		));
-		$cmb_demo->add_field(array(
+		$field5 = $cmb->add_field(array(
 			'name'	 => __('Test Text Email', 'cmb2'),
 			'desc'	 => __('field description (optional)', 'cmb2'),
 			'id'	 => $prefix . 'email',
@@ -75,10 +75,27 @@ class Test {
 		// 'repeatable' => true,
 		));
 
-		$this->addTestGrid();
+
+		$cmb2Grid = new \Cmb2Grid\Grid\Cmb2Grid($cmb);
+		$row = $cmb2Grid->addRow();
+		$row->addColumns(array(
+			$field1,
+			$field2
+		));
+		$row = $cmb2Grid->addRow();
+		$row->addColumns(array(
+			$field3,
+			$field4,
+			$field5
+		));
+
+		//$this->addTestGrid();
 	}
 
 	private function addTestGrid() {
+		if(!is_admin()){
+			return;
+		}
 		$cmb2Grid = new \Cmb2Grid\Grid\Cmb2Grid('_yourprefix_demo_metabox');
 		$row = $cmb2Grid->addRow();
 		$row->addColumns(array(

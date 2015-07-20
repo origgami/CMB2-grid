@@ -18,7 +18,7 @@ class Cmb2GridPlugin {
 		$this->loadFiles();
 		add_action('admin_head', array($this, 'wpHead'));
 		add_action('admin_enqueue_scripts',array($this,'admin_enqueue_scripts'));
-		$this->test();
+		//$this->test();
 	}
 	
 	private function test(){
