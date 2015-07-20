@@ -43,7 +43,7 @@ $row->addColumns(array($field1, $field2));
 
 **This is what you get using columns**
 
-![Image](assets/imgs/screenshot1.png?raw=true)
+![Image](assets/imgs/screenshot1.jpg)
 
 
 
