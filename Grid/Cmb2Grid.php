@@ -8,27 +8,29 @@ namespace Cmb2Grid\Grid;
  * @author Pablo Pacheco <pablo.pacheco@origgami.com.br>
  */
 class Cmb2Grid {
-	
+
 	private $cmb2Obj;
 	private $cmb2Id;
 	private $metaBoxConfig;
+	private $rows = array();
 
-	public function __construct($meta_box_config){
+	public function __construct( $meta_box_config ) {
 		$this->setMetaBoxConfig($meta_box_config);
-		add_action( "admin_init", array($this,'adminInit'),99);
-	}
-	
-	public function adminInit(){
 		$this->setCmb2Obj(\cmb2_get_metabox($this->getMetaBoxConfig()));
-		$cmb2Obj = $this->getCmb2Obj();
-		$field = cmb2_get_field($cmb2Obj,'_yourprefix_demo_text');
-		$field->args['before_row'] = '<div class="row" style="border:1px solid red;margin-top:25px">';		
+		//$cmb2Obj = $this->getCmb2Obj();
+		//error_log('--- DEBUG: $cmb2Obj ---');
+		//error_log(print_r($cmb2Obj, true));
+		//add_action("admin_init", array($this, 'adminInit'), 15);
 	}
 
 	public function addRow() {
-		return new Row();
+		$rows = $this->getRows();
+		$newRow = new Row($this);
+		$rows[] = $newRow;
+		$this->setRows($rows);
+		return $newRow;
 	}
-	
+
 	/**
 	 * 
 	 * @return \CMB2
@@ -40,7 +42,7 @@ class Cmb2Grid {
 	function setCmb2Obj( $cmb2Obj ) {
 		$this->cmb2Obj = $cmb2Obj;
 	}
-	
+
 	function getCmb2Id() {
 		return $this->cmb2Id;
 	}
@@ -48,7 +50,7 @@ class Cmb2Grid {
 	function setCmb2Id( $cmb2Id ) {
 		$this->cmb2Id = $cmb2Id;
 	}
-	
+
 	function getMetaBoxConfig() {
 		return $this->metaBoxConfig;
 	}
@@ -57,10 +59,12 @@ class Cmb2Grid {
 		$this->metaBoxConfig = $metaBoxConfig;
 	}
 
+	function getRows() {
+		return $this->rows;
+	}
 
-
-
-
-
+	function setRows( $rows ) {
+		$this->rows = $rows;
+	}
 
 }

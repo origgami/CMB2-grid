@@ -11,7 +11,6 @@ class Test {
 
 	public function __construct() {
 		$this->addTestCmb2();
-		$this->addTestGrid();
 	}
 
 	private function addTestCmb2() {
@@ -75,11 +74,23 @@ class Test {
 			'type'	 => 'text',
 		// 'repeatable' => true,
 		));
+
+		$this->addTestGrid();
 	}
 
 	private function addTestGrid() {
 		$cmb2Grid = new \Cmb2Grid\Grid\Cmb2Grid('_yourprefix_demo_metabox');
 		$row = $cmb2Grid->addRow();
+		$row->addColumns(array(
+			'_yourprefix_demo_text',
+			'_yourprefix_demo_textsmall'
+		));
+		$row = $cmb2Grid->addRow();
+		$row->addColumns(array(
+			'_yourprefix_demo_textmedium',
+			'_yourprefix_demo_url',
+			'_yourprefix_demo_email'
+		));
 	}
 
 }
