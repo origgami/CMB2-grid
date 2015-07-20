@@ -1,6 +1,15 @@
 # CMB2-grid
 A grid system for Wordpress CMB2 library that allows the creation of columns for a better layout in the admin.
 
+## Installation
+
+For now you have to install this as a WordPress plugin:
+
+1. Download the plugin
+2. Place the plugin folder in your `/wp-content/plugins/` directory
+3. Activate the plugin in the Plugin dashboard
+
+
 ## Usage
 Create your cmb2 metabox like you always do:
 
