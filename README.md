@@ -14,6 +14,7 @@ For now you have to install this as a WordPress plugin:
 Create your cmb2 metabox like you always do:
 
 ```php
+$prefix = '_yourprefix_demo_';
 $cmb = new_cmb2_box(array(
 	'id'			 => $prefix . 'metabox',
 	'title'			 => __('Test Metabox', 'cmb2'),
