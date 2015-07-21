@@ -52,6 +52,7 @@ $row->addColumns(array($field1, $field2));
 - Currently the grid system is using a lite version of Twitter Bootstrap
 - You can create as much rows as you want
 - You have to put the fields in the columns in the same order they were created
+- You can follow exactly what is in Test/Test.php file to see it in action
 
 ## Screenshots
 
