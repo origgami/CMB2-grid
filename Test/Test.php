@@ -26,56 +26,42 @@ class Test {
 		$cmb = new_cmb2_box(array(
 			'id'			 => $prefix . 'metabox',
 			'title'			 => __('Test Metabox', 'cmb2'),
-			'object_types'	 => array('page',), // Post type
-		// 'show_on_cb' => 'yourprefix_show_if_front_page', // function should return a bool value
-		// 'context'    => 'normal',
-		// 'priority'   => 'high',
-		// 'show_names' => true, // Show field names on the left
-		// 'cmb_styles' => false, // false to disable the CMB stylesheet
-		// 'closed'     => true, // true to keep the metabox closed by default
+			'object_types'	 => array('page',), // Post type		
 		));
 		$field1 = $cmb->add_field(array(
 			'name'		 => __('Test Text', 'cmb2'),
 			'desc'		 => __('field description (optional)', 'cmb2'),
 			'id'		 => $prefix . 'text',
-			'type'		 => 'text',
-			'show_on_cb' => 'yourprefix_hide_if_no_cats', // function should return a bool value
-		// 'sanitization_cb' => 'my_custom_sanitization', // custom sanitization callback parameter
-		// 'escape_cb'       => 'my_custom_escaping',  // custom escaping callback parameter
-		// 'on_front'        => false, // Optionally designate a field to wp-admin only
-		// 'repeatable'      => true,
+			'type'		 => 'text',					
 		));
 		$field2 = $cmb->add_field(array(
 			'name'	 => __('Test Text Small', 'cmb2'),
 			'desc'	 => __('field description (optional)', 'cmb2'),
 			'id'	 => $prefix . 'textsmall',
-			'type'	 => 'text',
-		// 'repeatable' => true,
+			'type'	 => 'text',		
 		));
 		$field3 = $cmb->add_field(array(
 			'name'	 => __('Test Text Medium', 'cmb2'),
 			'desc'	 => __('field description (optional)', 'cmb2'),
 			'id'	 => $prefix . 'textmedium',
-			'type'	 => 'text',
-		// 'repeatable' => true,
+			'type'	 => 'text',		
 		));
 		$field4 = $cmb->add_field(array(
 			'name'	 => __('Website URL', 'cmb2'),
 			'desc'	 => __('field description (optional)', 'cmb2'),
 			'id'	 => $prefix . 'url',
-			'type'	 => 'text',
-		// 'protocols' => array('http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet'), // Array of allowed protocols
-		// 'repeatable' => true,
+			'type'	 => 'text',		
 		));
 		$field5 = $cmb->add_field(array(
 			'name'	 => __('Test Text Email', 'cmb2'),
 			'desc'	 => __('field description (optional)', 'cmb2'),
 			'id'	 => $prefix . 'email',
-			'type'	 => 'text',
-		// 'repeatable' => true,
+			'type'	 => 'text',		
 		));
 
-
+		if(!is_admin()){
+			return;
+		}
 		$cmb2Grid = new \Cmb2Grid\Grid\Cmb2Grid($cmb);
 		$row = $cmb2Grid->addRow();
 		$row->addColumns(array(
@@ -87,26 +73,6 @@ class Test {
 			$field3,
 			$field4,
 			$field5
-		));
-
-		//$this->addTestGrid();
-	}
-
-	private function addTestGrid() {
-		if(!is_admin()){
-			return;
-		}
-		$cmb2Grid = new \Cmb2Grid\Grid\Cmb2Grid('_yourprefix_demo_metabox');
-		$row = $cmb2Grid->addRow();
-		$row->addColumns(array(
-			'_yourprefix_demo_text',
-			'_yourprefix_demo_textsmall'
-		));
-		$row = $cmb2Grid->addRow();
-		$row->addColumns(array(
-			'_yourprefix_demo_textmedium',
-			'_yourprefix_demo_url',
-			'_yourprefix_demo_email'
 		));
 	}
 
