@@ -46,7 +46,16 @@ $row = $cmb2Grid->addRow();
 $row->addColumns(array($field1, $field2));
 ```
 
-**OBS**
+You can also use custom bootstrap column classes if you want, like this
+
+```
+$row->addColumns(array(
+   array($field1, 'class' => 'col-md-8'),
+   array($field2, 'class' => 'col-md-4')
+));
+```
+
+**FAQ**
 - There is no need to load the grid code on frontend so I loaded all the grid classes on admin only. So **it is important to run the code only on admin side**, or the frontend will break. Just do like the example
 - If you want, you can opt to use the metabox and the field IDs also.
 - Currently the grid system is using a lite version of Twitter Bootstrap
