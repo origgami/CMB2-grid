@@ -39,9 +39,9 @@ class Row {
 		$this->closeRow($field);
 	}
 
-	public function addColumns(array $fieldIds=array()){
-		foreach ( $fieldIds as $key => $id ) {
-			$this->addColumn($id);
+	public function addColumns(array $fields=array()){
+		foreach ( $fields as $key => $field ) {
+			$this->addColumn($field);
 		}
 		$this->handleRow();
 		$this->handleColumnsCssClasses();
@@ -53,12 +53,16 @@ class Row {
 		$columnWidth = round(12/$columnsCount);
 		/*@var $column Column*/
 		foreach ( $columns as $key => $column) {
-			$column->setColumnClassWidth($columnWidth);
+			if(!$column->getColumnClass()){
+				$column->setBootstrapColumnClass($columnWidth);
+			}else{
+				$column->setColumnClassCmb2();
+			}
 		}
 	}
 
-	protected function addColumn( $fieldId ) {
-		$column = new Column($fieldId,$this->getGrid());
+	protected function addColumn( $field ) {
+		$column = new Column($field,$this->getGrid());
 		$columns = $this->getColumns();
 		$columns[]=$column;
 		$this->setColumns($columns);

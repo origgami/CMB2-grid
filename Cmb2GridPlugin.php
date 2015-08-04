@@ -36,18 +36,12 @@ class Cmb2GridPlugin {
 	}
 	
 	public function admin_enqueue_scripts() {
-		//wp_enqueue_style('bootstrap','https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css');
 		wp_enqueue_style('bootstrap_light', plugins_url('assets/css/bootstrap.min.css', __FILE__));
 	}
 
 	public function wpHead() {
 		?>
-		<style>
-			/*.cmb-row.cmb-type-checkbox .cmb-th{display:inline-block;}
-			.cmb-row.cmb-type-checkbox .cmb-td{display:inline-block;}
-			.cmb-row.cmb-type-checkbox .cmb-td input{margin:0px 0 0 5px;padding:0;}			
-			.cmb-row.cmb-type-checkbox *{vertical-align:middle}
-			.cmb2-metabox-description{color:#aaa;margin:0}*/
+		<style>			
 			.cmb2GridRow .cmb-row{border:none !important;padding:0 !important}
 			.cmb2GridRow .cmb-th label:after{border:none !important}
 			.cmb2GridRow .cmb-th{width:100% !important}
