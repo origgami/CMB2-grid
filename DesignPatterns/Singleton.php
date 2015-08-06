@@ -7,9 +7,7 @@ namespace Cmb2Grid\DesignPatterns;
  */
 if (!class_exists('\Cmb2Grid\DesignPatterns\Singleton')) {
 
-	class Singleton {
-
-		private static $instance;
+	class Singleton {		
 
 		protected function __construct() {
 			
@@ -23,11 +21,11 @@ if (!class_exists('\Cmb2Grid\DesignPatterns\Singleton')) {
 		 * @return Current_Class_Name
 		 */
 		public static function getInstance() {
-			$instance = self::$instance;
-			if (null === $instance) {
+			static $instance = null;
+			if ( null === $instance ) {
 				$instance = new static();
 			}
-			self::$instance = $instance;
+
 			return $instance;
 		}
 
