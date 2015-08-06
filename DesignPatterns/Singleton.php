@@ -23,11 +23,12 @@ if (!class_exists('\Cmb2Grid\DesignPatterns\Singleton')) {
 		 * @return Current_Class_Name
 		 */
 		public static function getInstance() {
-			if (null === self::$instance) {
-				self::$instance = new static();
+			$instance = self::$instance;
+			if (null === $instance) {
+				$instance = new static();
 			}
-
-			return self::$instance;
+			self::$instance = $instance;
+			return $instance;
 		}
 
 		final private function __clone() {
