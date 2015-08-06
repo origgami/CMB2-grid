@@ -5,13 +5,14 @@ namespace Cmb2Grid\Cmb2;
  *
  * @author Pablo Pacheco <pablo.pacheco@origgami.com.br>
  */
-class Utils {
-	//put your code here
-	
-	public static function initializeFieldArg(\CMB2_Field $field,$arg){
-		if(!isset($field->args[$arg])){
-			$field->args[$arg]='';
+if (!class_exists('\Cmb2Grid\Cmb2\Utils')) {
+	class Utils {		
+		
+		public static function initializeFieldArg(\CMB2_Field $field,$arg){
+			if(!isset($field->args[$arg])){
+				$field->args[$arg]='';
+			}
+			return $field;
 		}
-		return $field;
 	}
 }
