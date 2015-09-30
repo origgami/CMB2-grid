@@ -19,13 +19,25 @@ if (!class_exists('\Cmb2Grid\Grid\Row')) {
 		}
 		
 		protected function openRow(\CMB2_Field $field){				
-			\Cmb2Grid\Cmb2\Utils::initializeFieldArg($field, 'before_row');
-			$field->args['before_row'].= '<div class="row cmb2GridRow">';
+			if($field->args['type']=='group'){
+				\Cmb2Grid\Cmb2\Utils::initializeFieldArg($field, 'before_group');
+				$field->args['before_group'].= '<div class="row cmb2GridRow">';
+			}else{
+				\Cmb2Grid\Cmb2\Utils::initializeFieldArg($field, 'before_row');
+				$field->args['before_row'].= '<div class="row cmb2GridRow">';
+			}
 		}
 		
 		protected function closeRow(\CMB2_Field $field){				
-			\Cmb2Grid\Cmb2\Utils::initializeFieldArg($field, 'after_row');
-			$field->args['after_row'].= '</div>';
+			if($field->args['type']=='group'){
+				\Cmb2Grid\Cmb2\Utils::initializeFieldArg($field, 'after_group');
+				$field->args['after_group'].= '</div>';
+			}else{
+				\Cmb2Grid\Cmb2\Utils::initializeFieldArg($field, 'after_row');
+				$field->args['after_row'].= '</div>';
+			}
+			/*\Cmb2Grid\Cmb2\Utils::initializeFieldArg($field, 'after_row');
+			$field->args['after_row'].= '</div>';*/
 		}
 		
 		protected function handleRow(){
