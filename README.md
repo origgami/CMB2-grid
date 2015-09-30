@@ -1,5 +1,5 @@
 # CMB2-grid
-A grid system for Wordpress CMB2 library that allows the creation of columns for a better layout in the admin.
+A grid system for Wordpress [CMB2](https://github.com/WebDevStudios/cmb2) library that allows the creation of columns for a better layout in the admin.
 
 ## Installation
 
