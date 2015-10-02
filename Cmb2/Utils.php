@@ -14,5 +14,12 @@ if (!class_exists('\Cmb2Grid\Cmb2\Utils')) {
 			}
 			return $field;
 		}
+		
+		public static function initializeGroupFieldArg(\CMB2_Field $field,$arg){
+			if(!isset($field[$arg])){
+				$field[$arg]='';
+			}
+			return $field;
+		}
 	}
 }

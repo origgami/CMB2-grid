@@ -16,86 +16,76 @@ if (!class_exists('\Cmb2Grid\Test\Test')) {
 		}
 
 		private function addTestCmb2() {
-			//add_action('cmb2_init', array($this, 'testCmb'));
+			add_action('cmb2_init', array($this, 'testCmb'));
 			add_action('cmb2_init', array($this, 'testGroupCmb'));
 		}
 
 		public function testGroupCmb() {
-			// Start with an underscore to hide fields from custom fields list
-			$prefix			 = '_yourprefix_group_';
-			/**
-			 * Repeatable Field Groups
-			 */
-			$cmb_group		 = new_cmb2_box(array(
+			$prefix		 = '_yourprefix_group_';
+			$cmb_group	 = new_cmb2_box(array(
 				'id'			 => $prefix . 'metabox',
 				'title'			 => __('Repeating Field Group', 'cmb2'),
 				'object_types'	 => array('page',),
 			));
-			$field1	 = $cmb_group->add_field(array(
+			$field1		 = $cmb_group->add_field(array(
 				'name'	 => __('Test Text', 'cmb2'),
 				'desc'	 => __('field description (optional)', 'cmb2'),
 				'id'	 => $prefix . 'text',
 				'type'	 => 'text',
 			));
-			$field2	 = $cmb_group->add_field(array(
+			$field2		 = $cmb_group->add_field(array(
 				'name'	 => __('Test Text Small', 'cmb2'),
 				'desc'	 => __('field description (optional)', 'cmb2'),
 				'id'	 => $prefix . 'textsmall',
 				'type'	 => 'text',
 			));
-			
-			
+
 			// $group_field_id is the field id string, so in this case: $prefix . 'demo'
 			$group_field_id	 = $cmb_group->add_field(array(
-				'id'			 => $prefix . 'demo',
-				'type'			 => 'group',
-				//'description'	 => __('Generates reusable form entries', 'cmb2'),
-				//'before_group'	 => '<div>teste</div>',
-				'options'		 => array(
+				'id'		 => $prefix . 'demo',
+				'type'		 => 'group',
+				'options'	 => array(
 					'group_title'	 => __('Entry {#}', 'cmb2'), // {#} gets replaced by row number
 					'add_button'	 => __('Add Another Entry', 'cmb2'),
 					'remove_button'	 => __('Remove Entry', 'cmb2'),
-					'sortable'		 => true, // beta
-				// 'closed'     => true, // true to have the groups closed by default
+					'sortable'		 => true,
 				),
 			));
-			/**
-			 * Group fields works the same, except ids only need
-			 * to be unique to the group. Prefix is not needed.
-			 *
-			 * The parent field's id needs to be passed as the first argument.
-			 */
-			$cmb_group->add_group_field($group_field_id, array(
+			$gField1		 = $cmb_group->add_group_field($group_field_id, array(
 				'name'	 => __('Entry Title', 'cmb2'),
 				'id'	 => 'title',
 				'type'	 => 'text',
-			// 'repeatable' => true, // Repeatable fields are supported w/in repeatable groups (for most types)
 			));
-			$cmb_group->add_group_field($group_field_id, array(
+			$gField2		 = $cmb_group->add_group_field($group_field_id, array(
 				'name'			 => __('Description', 'cmb2'),
 				'description'	 => __('Write a short description for this entry', 'cmb2'),
 				'id'			 => 'description',
 				'type'			 => 'textarea_small',
 			));
-			
+
 			if (!is_admin()) {
 				return;
 			}
-			$cmb2Grid	 = new \Cmb2Grid\Grid\Cmb2Grid($cmb_group);
-			$row		 = $cmb2Grid->addRow();
+
+			//Create a default grid
+			$cmb2Grid = new \Cmb2Grid\Grid\Cmb2Grid($cmb_group);
+
+			//Create now a Grid of group fields
+			$cmb2GroupGrid	 = $cmb2Grid->addCmb2GroupGrid($group_field_id);
+			$row			 = $cmb2GroupGrid->addRow();
 			$row->addColumns(array(
-				$field1,
-				$field2,
-				//array($field1, 'class' => 'col-md-8'),
-				//array($field2, 'class' => 'col-md-4')
+				$gField1, $gField2
 			));
-			$row		 = $cmb2Grid->addRow();
+
+			//Now setup your columns like you generally do, even with group fields
+			$row = $cmb2Grid->addRow();
 			$row->addColumns(array(
-				$group_field_id
-				//array($field1, 'class' => 'col-md-8'),
-				//array($field2, 'class' => 'col-md-4')
+				$field1, $field2
 			));
-			
+			$row = $cmb2Grid->addRow();
+			$row->addColumns(array(
+				$cmb2GroupGrid // Can be $group_field_id also
+			));
 		}
 
 		public function testCmb() {

@@ -22,7 +22,7 @@ if (!class_exists('\Cmb2Grid\Cmb2GridPlugin')) {
 			$this->loadFiles();
 			add_action('admin_head', array($this, 'wpHead'));
 			add_action('admin_enqueue_scripts',array($this,'admin_enqueue_scripts'));
-			//$this->test();
+			$this->test();
 		}
 		
 		private function test(){
@@ -35,6 +35,12 @@ if (!class_exists('\Cmb2Grid\Cmb2GridPlugin')) {
 				require dirname(__FILE__).'/Grid/Cmb2Grid.php';
 				require dirname(__FILE__).'/Grid/Column.php';
 				require dirname(__FILE__).'/Grid/Row.php';
+				
+				require	dirname(__FILE__).'/Grid/Group/Cmb2GroupGrid.php';
+				require	dirname(__FILE__).'/Grid/Group/GroupRow.php';
+				require	dirname(__FILE__).'/Grid/Group/GroupColumn.php';
+				
+				
 				require dirname(__FILE__).'/Cmb2/Utils.php';
 			}
 		}

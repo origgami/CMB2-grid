@@ -15,6 +15,7 @@ if (!class_exists('\Cmb2Grid\Grid\Cmb2Grid')) {
 		private $cmb2Id;
 		private $metaBoxConfig;
 		private $rows = array();
+		
 
 		public function __construct( $meta_box_config ) {
 			$this->setMetaBoxConfig($meta_box_config);
@@ -23,6 +24,17 @@ if (!class_exists('\Cmb2Grid\Grid\Cmb2Grid')) {
 			//error_log('--- DEBUG: $cmb2Obj ---');
 			//error_log(print_r($cmb2Obj, true));
 			//add_action("admin_init", array($this, 'adminInit'), 15);
+		}
+		
+		/**
+		 * 
+		 * @param type $field
+		 * @return \Cmb2Grid\Grid\Group\Cmb2GroupGrid
+		 */
+		public function addCmb2GroupGrid($field){
+			$cmb2GroupGrid = new Group\Cmb2GroupGrid($this->getMetaBoxConfig());
+			$cmb2GroupGrid->setParentFieldId($field);
+			return $cmb2GroupGrid;
 		}
 
 		public function addRow() {

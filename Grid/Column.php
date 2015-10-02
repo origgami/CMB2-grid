@@ -23,11 +23,15 @@ if (!class_exists('\Cmb2Grid\Grid\Column')) {
 				$this->setFieldId($field);
 			} elseif (is_array($field)) {
 				$this->setFieldId($field[0]);
+			}else if(is_a($field, '\Cmb2Grid\Grid\Group\Cmb2GroupGrid')){
+				$this->setFieldId($field->getParentFieldId());
 			}
 			$fieldId = $this->getFieldId();
 
-			$fieldId = cmb2_get_field($grid->getCmb2Obj(), $fieldId);
-			$this->setField($fieldId);
+			
+			$finalField = cmb2_get_field($grid->getCmb2Obj(), $fieldId);
+			
+			$this->setField($finalField);
 
 			if (is_array($field)) {
 				if (isset($field['class'])) {

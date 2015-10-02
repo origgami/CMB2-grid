@@ -18,7 +18,9 @@ if (!class_exists('\Cmb2Grid\Grid\Row')) {
 			$this->setGrid($grid);
 		}
 		
-		protected function openRow(\CMB2_Field $field){				
+		protected function openRow(\CMB2_Field $field){
+			//error_log(print_r($field, true));
+			
 			if($field->args['type']=='group'){
 				\Cmb2Grid\Cmb2\Utils::initializeFieldArg($field, 'before_group');
 				$field->args['before_group'].= '<div class="row cmb2GridRow">';
@@ -28,7 +30,9 @@ if (!class_exists('\Cmb2Grid\Grid\Row')) {
 			}
 		}
 		
-		protected function closeRow(\CMB2_Field $field){				
+		protected function closeRow(\CMB2_Field $field){
+			//error_log(print_r($field, true));
+			
 			if($field->args['type']=='group'){
 				\Cmb2Grid\Cmb2\Utils::initializeFieldArg($field, 'after_group');
 				$field->args['after_group'].= '</div>';
