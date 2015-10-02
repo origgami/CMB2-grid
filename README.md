@@ -57,6 +57,7 @@ $row->addColumns(array(
 
 **FAQ**
 - There is no need to load the grid code on frontend so I loaded all the grid classes on admin only. So **it is important to run the code only on admin side**, or the frontend will break. Just do like the example
+- It works on [group fields](https://github.com/origgami/CMB2-grid/wiki/Group-fields) also
 - If you want, you can opt to use the metabox and the field IDs also.
 - Currently the grid system is using a lite version of Twitter Bootstrap
 - You can create as much rows as you want
