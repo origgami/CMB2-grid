@@ -2,6 +2,10 @@
 
 namespace Cmb2Grid;
 
+if ( ! defined( 'CMB2GRID_DIR' ) ) {
+  define( 'CMB2GRID_DIR', trailingslashit( dirname( __FILE__ ) ) );
+}
+
 /*
   Plugin Name: CMB2 Grid
   Plugin URI: https://github.com/origgami/CMB2-grid
@@ -46,7 +50,7 @@ if (!class_exists('\Cmb2Grid\Cmb2GridPlugin')) {
 		}
 		
 		public function admin_enqueue_scripts() {
-			wp_enqueue_style('bootstrap_light', plugins_url('assets/css/bootstrap.min.css', __FILE__));
+      wp_enqueue_style( 'bootstrap_light', $this->url( "assets/css/bootstrap.min.css" ) );
 		}
 
 		public function wpHead() {
@@ -64,6 +68,37 @@ if (!class_exists('\Cmb2Grid\Cmb2GridPlugin')) {
 			</style>
 			<?php
 		}
+
+    // Based on CMB2_Utils url() method
+    public function url( $path = '' ) {
+      if ( $this->url ) {
+        return $this->url . $path;
+      }
+
+      if ( 'WIN' === strtoupper( substr( PHP_OS, 0, 3 ) ) ) {
+        // Windows
+        $content_dir = str_replace( '/', DIRECTORY_SEPARATOR, WP_CONTENT_DIR );
+        $content_url = str_replace( $content_dir, WP_CONTENT_URL, cmb2_dir() );
+        $cmb2_url = str_replace( DIRECTORY_SEPARATOR, '/', $content_url );
+
+      } else {
+        $cmb2_url = str_replace(
+          array( WP_CONTENT_DIR, WP_PLUGIN_DIR ),
+          array( WP_CONTENT_URL, WP_PLUGIN_URL ),
+          //cmb2_dir()
+          CMB2GRID_DIR
+        );
+      }
+
+      /**
+       * Filter the CMB location url
+       *
+       * @param string $cmb2_url Currently registered url
+       */
+      $this->url = trailingslashit( apply_filters( 'cmb2_meta_box_url', set_url_scheme( $cmb2_url ), CMB2_VERSION ) );
+
+      return $this->url . $path;
+    }
 	}
 }
 
