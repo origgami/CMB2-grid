@@ -80,13 +80,13 @@ if (!class_exists('\Cmb2Grid\Cmb2GridPlugin')) {
 			if ('WIN' === strtoupper(substr(PHP_OS, 0, 3))) {
 				// Windows
 				$content_dir = str_replace('/', DIRECTORY_SEPARATOR, WP_CONTENT_DIR);
-				$content_url = str_replace($content_dir, WP_CONTENT_URL, cmb2_dir());
+				$content_url = str_replace($content_dir, WP_CONTENT_URL, CMB2GRID_DIR);
 				$cmb2_url	 = str_replace(DIRECTORY_SEPARATOR, '/', $content_url);
 			} else {
 				$cmb2_url = str_replace(
-				array(WP_CONTENT_DIR, WP_PLUGIN_DIR), array(WP_CONTENT_URL, WP_PLUGIN_URL),
-				//cmb2_dir()
-	CMB2GRID_DIR
+					array(WP_CONTENT_DIR, WP_PLUGIN_DIR),
+					array(WP_CONTENT_URL, WP_PLUGIN_URL),
+					CMB2GRID_DIR
 				);
 			}
 
