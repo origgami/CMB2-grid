@@ -16,9 +16,9 @@ if (!defined('CMB2GRID_DIR')) {
   License: GPLv2
  */
 
-require dirname(__FILE__) . '/DesignPatterns/Singleton.php';
-
 if (!class_exists('\Cmb2Grid\Cmb2GridPlugin')) {
+
+	require_once dirname(__FILE__) . '/DesignPatterns/Singleton.php';
 
 	class Cmb2GridPlugin extends DesignPatterns\Singleton {
 
@@ -104,4 +104,26 @@ if (!class_exists('\Cmb2Grid\Cmb2GridPlugin')) {
 
 }
 
+
+/* Instantiate the class on plugins_loaded. */
+// wp_installing() function was introduced in WP 4.4.
+if ( ( function_exists( 'wp_installing' ) && wp_installing() === false ) || ( ! function_exists( 'wp_installing' ) && ( ! defined( 'WP_INSTALLING' ) || WP_INSTALLING === false ) ) ) {
+	add_action( 'plugins_loaded', '\\' . __NAMESPACE__ . '\init' );
+}
+
+if ( ! function_exists( '\Cmb2Grid\init' ) ) {
+	/**
+	 * Initialize the class only if CMB2 is detected.
+	 *
+	 * @return void
+	 */
+	function init() {
+		if ( defined( 'CMB2_LOADED' ) ) {
+			if (!defined('CMB2GRID_DIR')) {
+				define('CMB2GRID_DIR', trailingslashit(dirname(__FILE__)));
+			}
 Cmb2GridPlugin::getInstance();
+		}
+	}
+}
+
