@@ -122,7 +122,7 @@ if ( ! function_exists( '\Cmb2Grid\init' ) ) {
 			if (!defined('CMB2GRID_DIR')) {
 				define('CMB2GRID_DIR', trailingslashit(dirname(__FILE__)));
 			}
-Cmb2GridPlugin::getInstance();
+			Cmb2GridPlugin::getInstance();
 		}
 	}
 }
