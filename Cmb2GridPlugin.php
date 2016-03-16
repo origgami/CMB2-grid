@@ -22,6 +22,8 @@ if (!class_exists('\Cmb2Grid\Cmb2GridPlugin')) {
 
 	class Cmb2GridPlugin extends DesignPatterns\Singleton {
 
+		const VERSION = '1.0';
+
 		protected function __construct() {
 			parent::__construct();
 			$this->loadFiles();
@@ -51,12 +53,13 @@ if (!class_exists('\Cmb2Grid\Cmb2GridPlugin')) {
 		}
 
 		public function admin_enqueue_scripts() {
-			wp_enqueue_style('bootstrap_light', $this->url("assets/css/bootstrap.min.css"));
+			$suffix = ( ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min' );
+			wp_enqueue_style( 'cmb2_grid_bootstrap_light', $this->url('assets/css/bootstrap' . $suffix . '.css'), null, self::VERSION );
 		}
 
 		public function wpHead() {
 			?>
-			<style>			
+			<style>
 				.cmb2GridRow .cmb-row{border:none !important;padding:0 !important}
 				.cmb2GridRow .cmb-th label:after{border:none !important}
 				.cmb2GridRow .cmb-th{width:100% !important}
