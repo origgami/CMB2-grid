@@ -13,6 +13,7 @@ if (!defined('CMB2GRID_DIR')) {
   Version: 1.0.0
   Author: Origgami
   Author URI: http://origgami.com.br
+  Depends: CMB2
   License: GPLv2
  */
 
