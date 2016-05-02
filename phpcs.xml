@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<ruleset name="CMB2 Grid">
+	<description>The code standard for CMB2 Grid is WordPress.</description>
+
+	<rule ref="WordPress">
+		<exclude name="Generic.Files.LowercasedFilename" />
+		<exclude name="WordPress.NamingConventions" />
+		<exclude name="Squiz.WhiteSpace.SuperfluousWhitespace.EmptyLines" />
+		<exclude name="WordPress.PHP.YodaConditions.NotYoda" />
+		
+		<!-- Temporarily exclude documentation checks until all classes, methods and properties have been documented. -->
+		<exclude name="WordPress-Docs" />
+	</rule>
+
+	<!-- exclude the 'empty' index files from some documentation checks -->
+	<rule ref="Squiz.Commenting.FileComment.WrongStyle">
+		<exclude-pattern>*/index.php</exclude-pattern>
+	</rule>
+	<rule ref="Squiz.Commenting.InlineComment.SpacingAfter">
+		<exclude-pattern>*/index.php</exclude-pattern>
+	</rule>
+
+</ruleset>
