@@ -1,17 +1,15 @@
 <?php
 namespace Cmb2Grid\DesignPatterns;
 /**
- * Description of Singleton
+ * Description of Singleton.
  *
  * Pablo Pacheco <pablo.pacheco@origgami.com.br>
  */
-if (!class_exists('\Cmb2Grid\DesignPatterns\Singleton')) {
+if ( ! class_exists( '\Cmb2Grid\DesignPatterns\Singleton' ) ) {
 
-	class Singleton {		
+	abstract class Singleton {
 
-		protected function __construct() {
-			
-		}
+		abstract protected function __construct();
 
 		/**
 		 * Returns the *Singleton* instance of this class.
@@ -30,10 +28,6 @@ if (!class_exists('\Cmb2Grid\DesignPatterns\Singleton')) {
 		}
 
 		final private function __clone() {
-			
 		}
-
 	}
-
 }
-?>
