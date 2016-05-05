@@ -21,10 +21,10 @@ if ( ! class_exists( '\Cmb2Grid\Test\Test' ) ) {
 		}
 
 		public function testGroupCmb() {
-			$prefix		 = '_yourprefix_group_';
+			$prefix		 = '_yourgridprefix_group_';
 			$cmb_group	 = new_cmb2_box( array(
 				'id'			 => $prefix . 'metabox',
-				'title'			 => __( 'Repeating Field Group', 'cmb2' ),
+				'title'			 => __( 'Repeating Field Group using a Grid', 'cmb2' ),
 				'object_types'	 => array( 'page' ),
 			) );
 			$field1		 = $cmb_group->add_field( array(
@@ -92,13 +92,13 @@ if ( ! class_exists( '\Cmb2Grid\Test\Test' ) ) {
 
 		public function testCmb() {
 			// Start with an underscore to hide fields from custom fields list.
-			$prefix	 = '_yourprefix_demo_';
+			$prefix	 = '_yourgridprefix_demo_';
 			/**
 			 * Sample metabox to demonstrate each field type included.
 			 */
 			$cmb	 = new_cmb2_box( array(
 				'id'			 => $prefix . 'metabox',
-				'title'			 => __( 'Test Metabox', 'cmb2' ),
+				'title'			 => __( 'Test Metabox using a Grid', 'cmb2' ),
 				'object_types'	 => array( 'page' ), // Post type.
 			));
 			$field1	 = $cmb->add_field( array(
