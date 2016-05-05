@@ -16,7 +16,11 @@ if ( ! class_exists( '\Cmb2Grid\Cmb2GridPlugin' ) ) {
 		const VERSION = '1.0';
 
 		protected function __construct() {
-			$this->loadFiles();
+			if ( ! is_admin() ) {
+				return;
+			}
+
+			spl_autoload_register( array( $this, 'auto_load' ) );
 
 			add_action( 'admin_head', array( $this, 'wpHead' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
@@ -24,22 +28,55 @@ if ( ! class_exists( '\Cmb2Grid\Cmb2GridPlugin' ) ) {
 		}
 
 		private function test() {
-			require dirname( __FILE__ ) . '/Test/Test.php';
 			new Test\Test();
 		}
 
-		private function loadFiles() {
-			if ( is_admin() ) {
-				require dirname( __FILE__ ) . '/Grid/Cmb2Grid.php';
-				require dirname( __FILE__ ) . '/Grid/Column.php';
-				require dirname( __FILE__ ) . '/Grid/Row.php';
+		/**
+		 * Auto load our class files.
+		 *
+		 * @param string $class Class name.
+		 *
+		 * @return void
+		 */
+		public function auto_load( $class ) {
+			static $prefix;
+			static $base_dir;
+			static $sep;
+			static $length;
 
-				require dirname( __FILE__ ) . '/Grid/Group/Cmb2GroupGrid.php';
-				require dirname( __FILE__ ) . '/Grid/Group/GroupRow.php';
-				require dirname( __FILE__ ) . '/Grid/Group/GroupColumn.php';
+			if ( ! isset( $prefix, $base_dir, $sep ) ) {
+				// Project-specific namespace prefix.
+				$prefix = __NAMESPACE__ . '\\';
 
+				// Base directory for the namespace prefix.
+				$base_dir = plugin_dir_path( __FILE__ ); // Has trailing slash.
 
-				require dirname( __FILE__ ) . '/Cmb2/Utils.php';
+				// Set directory separator.
+				$sep = '/';
+				if ( defined( 'DIRECTORY_SEPARATOR' ) ) {
+					$sep = DIRECTORY_SEPARATOR;
+				}
+				$length = strlen( $prefix );
+			}
+
+			// Does the class use the namespace prefix?
+			if ( strncmp( $prefix, $class, $length ) !== 0 ) {
+				// No, move to the next registered autoloader.
+				return;
+			}
+
+			// Get the relative class name.
+			$relative_class = substr( $class, $length );
+
+			/*
+			 * Add the base directory, replace namespace separators with directory
+			 * separators in the relative class name and append with .php.
+			 */
+			$file = $base_dir . str_replace( '\\', $sep, $relative_class ) . '.php';
+
+			// If the file exists, require it.
+			if ( file_exists( $file ) ) {
+				require_once $file;
 			}
 		}
 
