@@ -26,7 +26,7 @@ if ( version_compare( PHP_VERSION, '5.3', '<' ) ) {
 			$file = plugin_basename( __FILE__ );
 
 			if ( is_admin() && current_user_can( 'activate_plugins' ) && is_plugin_active( plugin_basename( $file ) ) ) {
-				add_action( 'admin_notices', create_function( null, 'echo \'<div class="error"><p>\', __( \'Activation failed: The CMB2 Grid plugin required PHP 5.3+. Please contact your webhost and ask them to upgrade the PHP version for your webhosting account.\', \'cmb2-grid\' ), \'</a></p></div>\';' ) );
+				add_action( 'admin_notices', create_function( null, 'echo \'<div class="error"><p>\', __( \'Activation failed: The CMB2 Grid plugin requires PHP 5.3+. Please contact your webhost and ask them to upgrade the PHP version for your webhosting account.\', \'cmb2-grid\' ), \'</a></p></div>\';' ) );
 
 				deactivate_plugins( $file, false, is_network_admin() );
 

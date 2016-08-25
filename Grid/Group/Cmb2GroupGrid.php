@@ -19,10 +19,6 @@ if ( ! class_exists( '\Cmb2Grid\Grid\Group\Cmb2GroupGrid' ) ) {
 
 		protected $parentFieldId;
 
-		public function __construct( $meta_box_config ) {
-			parent::__construct( $meta_box_config );
-		}
-
 		public function addRow() {
 			//parent::addRow();
 			$rows	 = $this->getRows();
