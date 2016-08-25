@@ -2,6 +2,11 @@
 <ruleset name="CMB2 Grid">
 	<description>The code standard for CMB2 Grid is WordPress.</description>
 
+	<!-- PHP cross-version compatibility -->
+	<config name="testVersion" value="5.3-99.0"/>
+	<rule ref="PHPCompatibility"/>
+
+	<!-- Code style -->
 	<rule ref="WordPress">
 		<exclude name="Generic.Files.LowercasedFilename" />
 		<exclude name="WordPress.NamingConventions" />
