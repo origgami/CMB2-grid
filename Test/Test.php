@@ -16,8 +16,8 @@ if ( ! class_exists( '\Cmb2Grid\Test\Test' ) ) {
 		}
 
 		private function addTestCmb2() {
-			add_action( 'cmb2_init', array( $this, 'testCmb' ) );
-			add_action( 'cmb2_init', array( $this, 'testGroupCmb' ) );
+			add_action( 'cmb2_admin_init', array( $this, 'testCmb' ) );
+			add_action( 'cmb2_admin_init', array( $this, 'testGroupCmb' ) );
 		}
 
 		public function testGroupCmb() {
@@ -62,10 +62,6 @@ if ( ! class_exists( '\Cmb2Grid\Test\Test' ) ) {
 				'id'			 => 'description',
 				'type'			 => 'textarea_small',
 			));
-
-			if ( ! is_admin() ) {
-				return;
-			}
 
 			// Create a default grid.
 			$cmb2Grid = new \Cmb2Grid\Grid\Cmb2Grid( $cmb_group );
@@ -132,9 +128,6 @@ if ( ! class_exists( '\Cmb2Grid\Test\Test' ) ) {
 				'type'	 => 'text',
 			));
 
-			if ( ! is_admin() ) {
-				return;
-			}
 			$cmb2Grid	 = new \Cmb2Grid\Grid\Cmb2Grid( $cmb );
 			$row		 = $cmb2Grid->addRow();
 			$row->addColumns( array(
