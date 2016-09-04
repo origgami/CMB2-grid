@@ -15,13 +15,13 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 
-.postbox-container .cmb2-wrap *, .postbox-container .cmb2-wrap {
+.cmb2-wrap *, .cmb2-wrap {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
-.postbox-container .cmb2-wrap *:before,
-.postbox-container .cmb2-wrap *:after {
+.cmb2-wrap *:before,
+.cmb2-wrap *:after {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
