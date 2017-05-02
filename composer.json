@@ -2,6 +2,6 @@
     "name": "origgami/cmb2-grid",
     "type": "wordpress-plugin",
     "require": {
-        "composer/installers": "v1.1.0"
+        "composer/installers": ">=v1.1.0"
     }
 }
