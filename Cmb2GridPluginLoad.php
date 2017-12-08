@@ -151,4 +151,5 @@ if ( ! function_exists( '\Cmb2Grid\init' ) ) {
 		}
 	}
 }
+add_action( 'cmb2_init',  '\Cmb2Grid\init' );
 
