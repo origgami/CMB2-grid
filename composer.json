@@ -1,6 +1,7 @@
 {
-    "name": "origgami/cmb2-grid",
+    "name": "eklingen88/cmb2-grid",
     "type": "wordpress-plugin",
+    "version": "1.0.0",
     "require": {
         "composer/installers": ">=v1.1.0"
     }
