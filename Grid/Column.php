@@ -53,12 +53,12 @@ if ( ! class_exists( '\Cmb2Grid\Grid\Column' ) ) {
 			if ( $field->args['type'] === 'group' ) {
 				\Cmb2Grid\Cmb2\Utils::initializeFieldArg( $field, 'before_group' );
 				\Cmb2Grid\Cmb2\Utils::initializeFieldArg( $field, 'after_group' );
-				$field->args['before_group'] .= "<div class=\"{$columnClass}\">";
+				$field->args['before_group'] .= '<div class="' . esc_attr( $columnClass ) . '">';
 				$field->args['after_group']  .= '</div>';
 			} else {
 				\Cmb2Grid\Cmb2\Utils::initializeFieldArg( $field, 'before_row' );
 				\Cmb2Grid\Cmb2\Utils::initializeFieldArg( $field, 'after_row' );
-				$field->args['before_row'] .= "<div class=\"{$columnClass}\">";
+				$field->args['before_row'] .= '<div class="' . esc_attr( $columnClass ) . '">';
 				$field->args['after_row']  .= '</div>';
 			}
 
