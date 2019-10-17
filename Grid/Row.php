@@ -23,10 +23,10 @@ if ( ! class_exists( '\Cmb2Grid\Grid\Row' ) ) {
 
 			if ( $field->args['type'] === 'group' ) {
 				\Cmb2Grid\Cmb2\Utils::initializeFieldArg( $field, 'before_group' );
-				$field->args['before_group'] .= '<div class="row cmb2GridRow">';
+				$field->args['before_group'] .= '<div class="cmb-row row cmb2GridRow">';
 			} else {
 				\Cmb2Grid\Cmb2\Utils::initializeFieldArg( $field, 'before_row' );
-				$field->args['before_row'] .= '<div class="row cmb2GridRow">';
+				$field->args['before_row'] .= '<div class="cmb-row row cmb2GridRow">';
 			}
 		}
 
