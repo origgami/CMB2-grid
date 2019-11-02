@@ -30,7 +30,7 @@ if ( ! class_exists( '\Cmb2Grid\Grid\Group\GroupColumn' ) ) {
 			//\Cmb2Grid\Cmb2\Utils::initializeFieldArg( $field->args['fields'][$fieldID], 'after_row' );
 
 			if ( ! empty( $fieldID['before_row'] ) && ! empty( $fieldID['after_row'] ) ) {
-				$field->args['fields'][ $fieldID ]['before_row'] .= "<div class=\"{$columnClass}\">";
+				$field->args['fields'][ $fieldID ]['before_row'] .= '<div class="' . esc_attr( $columnClass ) .'">';
 				$field->args['fields'][ $fieldID ]['after_row']  .= '</div>';
 			}
 		}
@@ -40,27 +40,6 @@ if ( ! class_exists( '\Cmb2Grid\Grid\Group\GroupColumn' ) ) {
 			$this->setFieldId( $field[1] );
 			$field = cmb2_get_field( $grid->getCmb2Obj(), $this->getParentFieldId() );
 			$this->setField( $field );
-
-			//parent::__construct( $field, $grid );
-
-			/* $this->setGrid( $grid );
-			  if ( is_string( $field ) ) {
-			  $this->setFieldId( $field );
-			  } elseif ( is_array( $field ) ) {
-			  $this->setFieldId( $field[0] );
-			  }
-			  $fieldId = $this->getFieldId();
-
-
-			  $field = cmb2_get_field( $grid->getCmb2Obj(), $fieldId );
-
-			  $this->setField( $field );
-
-			  if ( is_array( $field ) ) {
-			  if ( isset( $field['class'] ) ) {
-			  $this->setColumnClass( $field['class'] );
-			  }
-			  } */
 		}
 
 		function getParentFieldId() {
