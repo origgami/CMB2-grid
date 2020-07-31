@@ -88,7 +88,7 @@ if ( ! class_exists( '\Cmb2Grid\Cmb2GridPlugin' ) ) {
 				.cmb2GridRow .cmb-th label:after{border:none !important}
 				.cmb2GridRow .cmb-th{width:100% !important}
 				.cmb2GridRow .cmb-td{width:100% !important}
-				.cmb2GridRow input[type="text"], .cmb2GridRow textarea, .cmb2GridRow select{width:100%}
+				.cmb2GridRow input[type="text"]:not( '.hasDatepicker' ), .cmb2GridRow textarea, .cmb2GridRow select{width:100%}
 
 				.cmb2GridRow .cmb-repeat-group-wrap{max-width:100% !important;}
 				.cmb2GridRow .cmb-group-title{margin:0 !important;}
