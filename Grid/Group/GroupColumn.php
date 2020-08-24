@@ -28,11 +28,8 @@ if ( ! class_exists( '\Cmb2Grid\Grid\Group\GroupColumn' ) ) {
 
 			//\Cmb2Grid\Cmb2\Utils::initializeFieldArg( $field->args['fields'][$fieldID], 'before_row' );
 			//\Cmb2Grid\Cmb2\Utils::initializeFieldArg( $field->args['fields'][$fieldID], 'after_row' );
-
-			if ( ! empty( $fieldID['before_row'] ) && ! empty( $fieldID['after_row'] ) ) {
-				$field->args['fields'][ $fieldID ]['before_row'] .= "<div class=\"{$columnClass}\">";
-				$field->args['fields'][ $fieldID ]['after_row']  .= '</div>';
-			}
+            \Cmb2Grid\Cmb2\Utils::appendGroupFieldArg( $field, $fieldID, 'before_row',  "<div class=\"{$columnClass}\">" );
+            \Cmb2Grid\Cmb2\Utils::appendGroupFieldArg( $field, $fieldID, 'after_row',  "</div>" );
 		}
 
 		public function __construct( $field, \Cmb2Grid\Grid\Cmb2Grid $grid ) {
