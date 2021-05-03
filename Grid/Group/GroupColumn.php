@@ -33,6 +33,11 @@ if ( ! class_exists( '\Cmb2Grid\Grid\Group\GroupColumn' ) ) {
 		}
 
 		public function __construct( $field, \Cmb2Grid\Grid\Cmb2Grid $grid ) {
+			if ( is_array( $field ) && isset( $field['class'] ) ) {
+				$this->setColumnClass( $field['class'] );
+				$field = $field[0];
+			}
+			
 			$this->setParentFieldId( $field[0] );
 			$this->setFieldId( $field[1] );
 			$field = cmb2_get_field( $grid->getCmb2Obj(), $this->getParentFieldId() );
