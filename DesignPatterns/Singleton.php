@@ -26,8 +26,5 @@ if ( ! class_exists( '\Cmb2Grid\DesignPatterns\Singleton' ) ) {
 
 			return $instance;
 		}
-
-		final private function __clone() {
-		}
 	}
 }
