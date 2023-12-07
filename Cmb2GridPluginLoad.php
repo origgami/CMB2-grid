@@ -14,7 +14,8 @@ if ( ! class_exists( '\Cmb2Grid\Cmb2GridPlugin' ) ) {
 	class Cmb2GridPlugin extends DesignPatterns\Singleton {
 
 		const VERSION = '1.0';
-
+		private $url;
+		
 		protected function __construct() {
 			spl_autoload_register( array( $this, 'auto_load' ) );
 
